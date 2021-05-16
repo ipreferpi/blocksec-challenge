@@ -15155,25 +15155,41 @@ block height and the last orphaned block's height.</p>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Recommendations-for-Coinbase">Recommendations for Coinbase<a class="anchor-link" href="#Recommendations-for-Coinbase">&#182;</a></h2><h3 id="How-does-this-affect-Coinbase?">How does this affect Coinbase?<a class="anchor-link" href="#How-does-this-affect-Coinbase?">&#182;</a></h3><ol>
-<li><p>Coinbase could be a potential target of future attacks if their confirmation requirement is low enough on smaller
-blockchains.</p>
+<li><p>Coinbase could be a potential target of future double spend attacks if their confirmation requirement is low enough
+on smaller blockchains that are vulnerable to a 51% attack.</p>
 </li>
-<li><p>Any holdings Coinbase has in vulnerable coins is at risk if another exchange is the target of a future attack.</p>
+<li><p>Any holdings Coinbase has in vulnerable coins is at partial risk if another exchange is the target of a future double spend
+attack, because any attack can cause investors to lose faith and price to drop. (This only matters if Coinbase's financial
+strategy is based on increasing dollar value instead of a HODL based strategy that prioritizes increasing holdings. The
+potential price decrease could actually be a benefit that allows for an increased holding by 'buying the dip'.)</p>
 </li>
 </ol>
 <h3 id="What-steps-should-Coinbase-take?">What steps should Coinbase take?<a class="anchor-link" href="#What-steps-should-Coinbase-take?">&#182;</a></h3><ol>
 <li><p>Coinbase should raise the number of confirmations for all coins and tokens that run on blockchains with a low hashrate.
-Ideally this number should be at least several weeks, due to the availability of rented hashpower.</p>
+Ideally this number should be at least double the last 51% attack's block count, and as high as the market will allow
+Coinbase to stay competitive.</p>
 </li>
 <li><p>Coinbase should share any suspicions of double spend activity with other exchanges to lower the potential value lost
 due to a post-attack price drop.</p>
 </li>
+<li><p>When any double spend occurs, monitor the movement of the effectively stolen coins, and refuse to accept the deposit.
+This will stop Coinbase from receiving negative press for becoming unknowingly complicit in the attack.</p>
+</li>
 </ol>
-<h3 id="What-information-or-events-should-Coinbase-engineers-attempt-to-observe-going-forward-based-on-this-analysis?">What information or events should Coinbase engineers attempt to observe going forward based on this analysis?<a class="anchor-link" href="#What-information-or-events-should-Coinbase-engineers-attempt-to-observe-going-forward-based-on-this-analysis?">&#182;</a></h3><p>This attack only took 15 hours to steal 465448 ETC, which on that date was \$3,351,225 at \\$7.20 per ETC.
+<h3 id="What-information-or-events-should-Coinbase-engineers-attempt-to-observe-going-forward-based-on-this-analysis?">What information or events should Coinbase engineers attempt to observe going forward based on this analysis?<a class="anchor-link" href="#What-information-or-events-should-Coinbase-engineers-attempt-to-observe-going-forward-based-on-this-analysis?">&#182;</a></h3><p>Coinbase should monitor any chain reorganization for double spent transactions, and flag any transactions over $1000.
+Some small unintentional double spends can be expected with normal chain interaction, but anything above that is very
+suspect. I believe that the scripts I wrote would detect double spends given any other reorganization dataset, and
+would enjoy testing it against the other attacks that occured in the same week. The implementation is currently suited
+towards answering this challenge, but would be trivial to rebuild it into a more useable tool.</p>
+<p>This attack only took 15 hours to steal 465448 ETC, which on that date was \$3,351,225 at \\$7.20 per ETC.
 Assuming the attacker rented hashpower from a 3rd party provider, i.e. NiceHash, Coinbase should flag any deposits that
-are larger than the cost to rent the entire hashrate of that network for more than 24 hours.</p>
+are larger than the cost to rent the entire hashrate of that network for more than 24 hours. Those flagged deposits
+should have a shadow confirmation requirement that is at least double the standard requirement, with human review.</p>
 <p>Coinbase should also monitor larger blockchains experiencing a sudden drop in hashrate, as that could signal an attack
-brewing for a smaller chain, especially those that are mined primarily on GPUs instead of ASICs.</p>
+brewing for a smaller chain, especially those that are mined primarily on GPUs instead of ASICs.
+(GPU-mined chains have more risk because they can mine any algorithm, while ASICs can only mine one.) Partnering with
+hashpower providers like NiceHash to detect when large hashpower purchases occur would also be beneficial to early
+detection of incoming 51% attacks.</p>
 
 </div>
 </div>
